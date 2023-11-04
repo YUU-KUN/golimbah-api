@@ -68,8 +68,8 @@ class GameSessionController extends Controller
             $input['status'] = 'pending';
         } else {
             $old_user_game = UserGameSession::where('user_id', $user->id)->first();
-            $input['goal_score'] = $old_user_game ? $old_user_game->goal_score += 50 : 50;
-            $input['level'] = $old_user_game ? $old_user_game->level += 1 : 1;
+            $input['goal_score'] = $old_user_game ? $old_user_game->GameSession->goal_score += 50 : 50;
+            $input['level'] = $old_user_game ? $old_user_game->GameSession->level += 1 : 1;
             $input['status'] = 'started';
         }
 
