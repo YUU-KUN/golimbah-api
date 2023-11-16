@@ -18,7 +18,8 @@ class Trash extends Model
 
     public function getPhotoUrlAttribute() {
         if ($this->photo) {
-            return url('/') . Storage::url('trashes/' . $this->photo);
+            return url('/trashes') .'/' . $this->photo;
+            // return url('/') . Storage::url('trashes/' . $this->photo);
         }
     }
 

@@ -69,7 +69,8 @@ class TrashController extends Controller
 
         if ($request->file('photo')) {
             $photo_filename = time().'.'.$request->photo->extension();
-            $photo_path = Storage::url('trashes/');
+            // $photo_path = Storage::url('trashes/');
+            $photo_path = '/trashes/';
             $request->photo->move(public_path($photo_path), $photo_filename);
             $input['photo'] = $photo_filename;
         }
