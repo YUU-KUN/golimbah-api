@@ -224,10 +224,10 @@ class GameSessionController extends Controller
             'user_id' => 'required|string|exists:user_game_sessions,user_id',
             'score' => 'required|integer',
             // game_session_id & user_id must be unique
-            'game_session_id' => 'unique:leaderboards,game_session_id,NULL,id,user_id,'.$input['user_id'],
+            // 'game_session_id' => 'unique:leaderboards,game_session_id,NULL,id,user_id,'.$input['user_id'],
         ], [
             'user_id.exists' => 'Anda belum bergabung pada permainan ini',
-            'game_session_id.unique' => 'Permainan sudah selesai'
+            // 'game_session_id.unique' => 'Permainan sudah selesai'
         ]);
 
         if ($validator->fails()) {
