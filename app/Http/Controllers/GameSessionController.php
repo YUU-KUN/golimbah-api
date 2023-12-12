@@ -250,9 +250,7 @@ class GameSessionController extends Controller
         ]);
         
         $leaderboard = Leaderboard::create($input);
-        // if ($input['user_id'] == Auth::user()->id) {
-        //     event(new Pusher('game-session-finished'));
-        // }
+        event(new Pusher('game-session-finished'));
         return response()->json([
             'success' => true,
             'message' => 'Berhasil membuat leaderboard permainan',
