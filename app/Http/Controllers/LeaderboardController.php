@@ -26,6 +26,9 @@ class LeaderboardController extends Controller
             ->orderBy('score', 'desc');
         })->orderBy('score', 'desc')->limit($limit)->get()->unique('user_id');
 
+        // if leaderboard not array, convert to array
+        $leaderboard = is_array($leaderboard) ? $leaderboard : $leaderboard->toArray();
+
         return response()->json([
             'success' => true,
             'message' => 'Berhasil mendapatkan data public leaderboard',
