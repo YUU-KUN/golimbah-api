@@ -19,15 +19,12 @@ class LeaderboardController extends Controller
         $limit = $request->limit ?? null;
         $mode = $request->mode;
         $leaderboard = Leaderboard::whereHas('GameSession', function($query) use ($mode) {
-            $query->whereHas('UserGameSession')
-            ->where('mode', $mode)
+            // $query->whereHas('UserGameSession')
+            $query->where('mode', $mode)
             ->where('status', 'finished')
-            ->where('session_code', NULL)
-            ->orderBy('score', 'desc');
-        })->orderBy('score', 'desc')->limit($limit)->get()->unique('user_id');
-
-        // if leaderboard not array, convert to array
-        $leaderboard = is_array($leaderboard) ? $leaderboard : $leaderboard->toArray();
+            ->where('session_code', NULL); //user
+            // ->orderBy('score', 'desc');
+        })->orderBy('score', 'desc')->limit($limit)->get();
 
         return response()->json([
             'success' => true,
