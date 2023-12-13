@@ -248,6 +248,9 @@ class GameSessionController extends Controller
         $gameSession->update([
             'status' => 'finished'
         ]);
+        // accumulate score from previous gameplay
+        $userGameSession = Leaderboard::where('user_id', $input['user_id'])->get();
+        $input['score'] = $userGameSession->sum('score');
         
         $leaderboard = Leaderboard::create($input);
         event(new Pusher('game-session-finished'));
