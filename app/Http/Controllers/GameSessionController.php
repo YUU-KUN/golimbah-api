@@ -187,7 +187,7 @@ class GameSessionController extends Controller
     public function joinGame(Request $request) {
         $input = $request->all();
         $validator = \Validator::make($input, [
-            'session_code' => 'required|string|exists:game_sessions,session_code',
+            'session_code' => 'required|numeric|exists:game_sessions,session_code',
             'fullname' => 'required|string'
         ]);
         if ($validator->fails()) {
