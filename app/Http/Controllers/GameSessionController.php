@@ -249,9 +249,9 @@ class GameSessionController extends Controller
             'status' => 'finished'
         ]);
         // accumulate score from previous gameplay
-        $userGameSession = GameSession::where('user_id', $input['user_id'])->get();
-        if ($userGameSession->count() > 0) {
-            $input['score'] += $userGameSession->sum('score');
+        $userLeaderboard = Leaderboard::where('user_id', $input['user_id'])->get();
+        if ($userLeaderboard->count() > 0) {
+            $input['score'] += $userLeaderboard->sum('score');
         }
         
         $leaderboard = Leaderboard::create($input);
