@@ -24,7 +24,7 @@ class LeaderboardController extends Controller
             ->where('status', 'finished')
             ->where('session_code', NULL); //user
             // ->orderBy('score', 'desc');
-        })->orderBy('score', 'desc')->limit($limit)->get();
+        })->orderBy('score', 'desc')->limit($limit)->get()->unique('user_id');
 
         return response()->json([
             'success' => true,
