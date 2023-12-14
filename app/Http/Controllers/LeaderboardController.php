@@ -16,7 +16,8 @@ class LeaderboardController extends Controller
      */
     public function index(Request $request)
     {
-        $limit = $request->limit ?? null;
+        $limit = null;
+        // $limit = $request->limit ?? null;
         $mode = $request->mode;
         $leaderboard = Leaderboard::whereHas('GameSession', function($query) use ($mode) {
             // $query->whereHas('UserGameSession')
