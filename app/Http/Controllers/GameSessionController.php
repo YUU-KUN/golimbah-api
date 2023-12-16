@@ -248,7 +248,6 @@ class GameSessionController extends Controller
         $gameSession->update([
             'status' => 'finished'
         ]);
-        // accumulate score from previous gameplay
         $userLeaderboard = Leaderboard::where('user_id', $input['user_id'])->get();
         if ($userLeaderboard->count() > 0) {
             $input['score'] += $userLeaderboard->sum('score');
@@ -270,5 +269,9 @@ class GameSessionController extends Controller
             'message' => 'Berhasil mendapatkan data partisipan',
             'data' => $participants
         ], 200);
+    }
+
+    public function finishFirst() {
+        event(new Pusher('game-session-finished-first'));
     }
 }

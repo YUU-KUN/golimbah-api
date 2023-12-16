@@ -48,6 +48,7 @@ Route::middleware(['auth:api'])->group(function () {
 // Only Admin Can Access
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::post('start-game', [GameSessionController::class, 'startGame']);
+    Route::post('finish-first', [GameSessionController::class, 'finishFirst']);
 });
 
 // Only User Can Access
