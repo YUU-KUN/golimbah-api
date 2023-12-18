@@ -252,8 +252,10 @@ class GameSessionController extends Controller
         if ($userLeaderboard->count() > 0) {
             $input['score'] += $userLeaderboard->sum('score');
         }
+
+        $leaderboard = Leaderboard::where('user_id', $input['user_id'])->first();
         
-        $leaderboard = Leaderboard::create($input);
+        $leaderboard = $leaderboard->update($input);
         event(new Pusher('game-session-finished'));
         return response()->json([
             'success' => true,
