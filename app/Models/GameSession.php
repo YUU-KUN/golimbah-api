@@ -18,4 +18,8 @@ class GameSession extends Model
     public function GameSession() {
         return $this->hasMany(GameSession::class);
     }
+
+    public function Leaderboards() {
+        return $this->hasMany(Leaderboard::class);
+    }
 }
