@@ -92,6 +92,29 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function updateProfile(Request $request) {
+        $input = $request->all();
+        $validator = \Validator::make($input, [
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => $validator->errors()
+            ], 401);
+        }
+
+        $user = Auth::user();
+        $user->update($input);
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil memperbarui profil',
+                'data' => $user
+            ], 200);
+        }
+    }
+
     public function logout (Request $request) {
         $token = $request->user()->token();
         $token->revoke();
